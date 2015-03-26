@@ -80,7 +80,7 @@
               <% @user.video_posts.each do |video| %>
               <%= render 'video_posts/posts',video:video %>
             <% end %>
-          <% else %>
+          <% elsif params[:tab] == 'collect' %>
               <% @collect_posts.each do |post| %>
                 <%= render 'posts/posts',post: post %>
               <% end %>
