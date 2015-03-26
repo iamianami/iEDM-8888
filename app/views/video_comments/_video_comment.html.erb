@@ -1,0 +1,29 @@
+<div class="media">
+    <%= link_to user_path(comment.creator) do %>
+        <div class="star-rating pull-right" data-score= <%= comment.rating %>></div>
+        <span class='label label-info'>
+          <%= comment.creator.username %> 
+        </span>
+    <% end %>
+
+    <p><%= comment.body %></p>
+    <div class="media-body">
+     
+      <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+        <i class="fa fa-clock-o"></i> <%= "#{time_ago_in_words(comment.created_at)} ago" %>
+      </small> 
+      
+    </div>  
+</div>
+
+
+
+<script>
+  $('.star-rating').raty({
+    path:'/assets/',
+    readOnly: true,
+    score: function() {
+          return $(this).attr('data-score');
+    }
+  });
+</script>

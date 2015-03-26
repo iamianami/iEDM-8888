@@ -1,0 +1,92 @@
+<%= render 'errors/errors',obj:@comment %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-7">
+          <% @videopost.categories.each do |category| %>
+            <%= link_to category_path(category) do %>
+              <span class="badge"><%= category.name %></span>
+            <% end %>
+          <% end %>
+      
+        <div class="table-responsive">
+          <table class="table">
+            <h4 class='text-danger'><%= @videopost.title %></h4>
+            <%= social_share_button_tag(@videopost.title) %>
+            <p class='pull-right'>
+                    Created by <%= @videopost.creator.username %>
+                    <%= link_to '編輯修改',edit_video_post_path(@videopost) %>
+                    <%= @videopost.created_at %>
+            </p>
+            <tbody>
+              <tr>
+                <td class='text-center'><%= @videopost.url_html %></td>
+              </tr>
+              <tr>
+                <td>
+                    <div class="star-rating" data-score= <%= @videopost.average_rating %>></div>
+                </td>
+              </tr>
+              <tr>
+                <td><%= @videopost.description.html_safe %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <span><%= link_to '< 上一篇' ,@videopost.previous if @videopost.previous %></span>
+        <span class='pull-right'><%= link_to '下一篇 >',@videopost.next if @videopost.next %></span>
+      
+      </div>
+
+     
+      <div class="col-md-4 col-md-offset-1">
+        <% if logged_in? %>
+          <%= form_for [@videopost,@comment] do |f| %>
+            
+            <div class='form-group'>
+              <%= f.label :'Say something 說些什麼！？' %>
+              <%= f.text_area :body ,class:'form-control' %>
+            </div>
+          
+            <div id='star-rating'></div>
+            <%= f.submit '送出' ,class:'btn btn-primary btn-xs pull-right'%>
+        
+          <% end %>
+           
+        </br>
+        <hr>
+
+        <% end %>
+
+        <% @videopost.reload.video_comments.each do |comment| %>
+          <%= render 'video_comments/video_comment',comment: comment %>
+          <% if logged_in? && current_user.admin? %>
+            <%= link_to 'Delete',[@videopost,comment],method:'delete',class:'btn btn-danger btn-xs' %>
+          <% end %>
+        <% end %>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#star-rating').raty({
+    path:'/assets/',
+    scoreName: 'video_comment[rating]'
+  });
+</script>
+<script>
+  $('.star-rating').raty({
+    path:'/assets/',
+    readOnly: true,
+    score: function() {
+          return $(this).attr('data-score');
+    }
+  });
+</script>
+
+
+
+

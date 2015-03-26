@@ -1,0 +1,49 @@
+<% if !logged_in? %>
+<header>
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in">Welcome To Our Studio!</div>
+            <div class="intro-lead-in">Let's Party, Let's Crazy</div>
+            <div class="intro-heading">It's Nice To Meet You</div>
+            <a href="#services" class="btn btn-danger btn-xl">Get Start</a>
+        </div>
+    </div>
+</header>
+<% end %>
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading"><%= image_tag("../assets/images/iEDM_gold.jpg") %></h2>
+                <h3 class="section-subheading">最新 EDM 資訊、音樂以及各地 Party 分享，我們的 Party，我們的 Music 。</h3>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                    <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading"><%= link_to 'HOT NEWS',posts_path,class:"text-danger"%></h4>
+               <h3 class="section-subheading">最新的ＥＤＭ相關新聞、八卦、消息</h3>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                    <i class="fa fa-headphones fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading"><%= link_to 'Hot EDM SHARE',video_posts_path,class:"text-danger" %></h4>
+                <h3 class="section-subheading">分享你的ＥＤＭ</h3>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                    <i class="fa fa-trophy fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading"><%= link_to 'World Top 10 DJs',top10_index_path,class:"text-danger" %></h4>
+                <h3 class="section-subheading">世界10大 DJ 新聞、音樂</h3>
+            </div>
+        </div>
+    </div>
+</section>

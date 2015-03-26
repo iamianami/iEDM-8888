@@ -1,0 +1,7 @@
+<% if @like.valid? %>
+  $("#post_<%= @comment.id %>_like_votes").html("<%= @comment.like %>  <i class='fa fa-thumbs-o-up'></i>")
+  $("#post_<%= @comment.id %>_dislike_votes").html("<%= @comment.dislike %> <i class='fa fa-thumbs-o-down'></i>")
+  alert('Like成功')
+<% else %>
+  alert('你已經選過囉！')
+<% end %>

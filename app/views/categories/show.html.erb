@@ -1,0 +1,15 @@
+<%= render 'titles/title',title: "#{@category.name}" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1"> 
+      <div class="panel">
+        <div class="panel-body">
+          <% @category.posts.each do |post| %>
+            <%= render 'posts/posts' , post:post %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

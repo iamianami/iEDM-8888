@@ -1,0 +1,10 @@
+<% if !logged_in? %>
+  alert('請先登入或是成為會員才能投票喔')
+<% elsif @like.valid? %>
+  $("#post_<%= @post.id %>_like_votes").html("<%= @post.like %> 人覺得不賴")
+  $("#post_<%= @post.id %>_dislike_votes").html("<%= @post.dislike %> 人覺得頗爛")
+  alert('like成功')
+<% else %> 
+  alert('你已經選過囉！')
+<% end %>
+

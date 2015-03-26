@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="row">
+    
+    </div>
+      <div class="col-md-6 col-md-offset-3" >
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= @user.username %> 的個人檔案</h3>
+          </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center">
+                  <%= image_tag @user.avatar.url(:thumb),class:"img-rounded" %> 
+                </div>
+                
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td><i class="fa fa-user"></i> 姓名:</td>
+                        <td><%= @user.username %></td>
+                      </tr>
+                      <tr>
+                        <td><i class="fa fa-calendar"></i> 加入EDM時間:</td>
+                        <td><%= @user.created_at %></td>
+                      </tr>
+                      <tr>
+                        <td><i class="fa fa-birthday-cake"></i> 生日:</td>
+                        <td>01/24/1988</td>
+                      </tr>
+                     
+                      <tr>
+                        <td><i class="fa fa-transgender"></i> 男生 or 女生:</td>
+                        <td>Male</td>
+                      </tr>
+
+                      <tr>
+                        <td><i class="fa fa-home"></i> 居住地區:</td>
+                        <td>新北市</td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+                <p>i Love EDM,Love Party</p>
+              </small> 
+            </div>
+
+        </div><!--panel-info -->
+          <ul class='nav nav-tabs'>
+            <li class="<%= 'active' if params[:tab].nil? %>">
+              <%= link_to "#{@user.posts.size} 篇文章",user_path(@user) %>
+            </li>
+            <li class="<%= 'active' if params[:tab] == 'comments' %>">
+              <%= link_to "#{@user.comments.size} 則評論",user_path(@user,tab:'comments') %>
+            </li>  
+            <li class="<%= 'active' if params[:tab] == 'videos' %>">
+              <%= link_to "#{@user.video_posts.size} 音樂",user_path(@user,tab:'videos') %>
+            </li> 
+             <li class="<%= 'active' if params[:tab] == 'collect' %>">
+              <%= link_to "我的收藏",user_path(@user,tab:'collect') %>
+            </li>              
+          </ul>
+      
+     
+          <% if params[:tab].nil? %>
+              <% @user.posts.each do |post| %> 
+              <%= render 'posts/posts',post: post %>
+            <% end %>
+          <% elsif params[:tab] == 'comments' %>
+              <% @user.comments.each do |comment| %>
+              <%= render 'comments/comment',comment: comment %>
+            <% end %>
+          <% elsif params[:tab] == 'videos' %>
+              <% @user.video_posts.each do |video| %>
+              <%= render 'video_posts/posts',video:video %>
+            <% end %>
+          <% else %>
+              <% @collect_posts.each do |post| %>
+                <%= render 'posts/posts',post: post %>
+              <% end %>
+          <% end %>
+      </div>
+</div>
+
+<div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

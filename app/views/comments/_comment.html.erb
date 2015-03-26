@@ -1,0 +1,25 @@
+
+<div class="media">
+    <%= link_to comment.creator.username,user_path(comment.creator),class:"btn btn-danger btn-xs"  %>
+   
+    <p><%= comment.body %></p>
+    
+    <div class="media-body">
+      <% if logged_in? %>
+        <%= link_to like_post_comment_path(comment.post,comment,like: true),method:'post',remote: true,class:'pull-right' do %>
+          <span id='post_<%= comment.id %>_like_votes'><%= "#{comment.like}" %> <i class="fa fa-thumbs-o-up"></i></span>  
+        <% end %>
+        
+        <%= link_to like_post_comment_path(comment.post,comment,like: true),method:'post',remote: true ,class:'text-danger pull-right' do %>
+          <span id='post_<%= comment.id %>_doslike_votes'><%= "#{comment.dislike}" %> <i class="fa fa-thumbs-o-down"></i></span> 
+        <% end %>
+      <% end %> 
+      <small style="font-family:courier,'new courier';" class="text-muted pull-right">
+        <i class="fa fa-clock-o"></i> <%= "#{time_ago_in_words(comment.created_at)} ago" %>
+      </small>  
+    </div> 
+
+</div>
+
+
+

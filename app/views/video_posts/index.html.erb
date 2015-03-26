@@ -1,0 +1,59 @@
+<div class="container">
+ <!-- Page Header -->
+    <div class="row">
+        <h1 class="page-header text-danger">HOT EDM SHARE
+            <small>熱門ＥＤＭ</small>
+            <%= link_to '分享你的音樂+' , new_video_post_path ,class:'btn btn-danger pull-right'%>
+        </h1>
+    </div>
+
+ 
+    <% @videopost.each do |video| %>
+    
+        <div class="col-md-4">
+            <div class='row'>
+                <%= render 'video_posts/posts',video: video %>
+            </div>
+        </div>
+    <% end %>  
+        
+</div>
+
+<div class="apple_pagination">
+    <%= will_paginate @videopost %>
+</div>
+
+
+<!-- Pagination -->
+<!-- <div class="row text-center">
+    <div class="col-lg-12">
+        <ul class="pagination">
+            <li>
+                <a href="#">&laquo;</a>
+            </li>
+            <li class="active">
+                <a href="#">1</a>
+            </li>
+            <li>
+                <a href="#">2</a>
+            </li>
+            <li>
+                <a href="#">3</a>
+            </li>
+            <li>
+                <a href="#">4</a>
+            </li>
+            <li>
+                <a href="#">5</a>
+            </li>
+            <li>
+                <a href="#">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+</div> -->
+<!-- /.row -->
+
+<hr>
+
+</div>

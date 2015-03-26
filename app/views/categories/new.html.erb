@@ -1,0 +1,16 @@
+<div class='col-md-8 col-md-offset-2'>
+  <div class="panel panel-primary">
+    <div class="panel-heading">建立新分類目錄</div>
+      <div class="panel-body">
+        <%= form_for @category do |f| %>
+          <div class='form-group'>
+            <%= f.label :'目錄名稱' %>
+            <%= f.text_field :name,class:'form-control' %>
+          </div>
+
+          <%= f.submit '建立新目錄',class:'btn btn-default pull-right' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

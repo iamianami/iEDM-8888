@@ -1,0 +1,35 @@
+<%= render 'errors/errors', obj: @user %>
+<div class='col-md-6 col-md-offset-3'>
+  <div class="panel">
+      <div class="panel-body">
+       <%= form_for @user do |f| %>
+        <div class='form-group'>
+          <%= f.label :'名稱 User name' %>
+          <%= f.text_field :username ,class:'form-control' %>
+        </div>
+        <div class='form-group'>
+          <%= f.label :'密碼 Password' %>
+          <%= f.password_field :password,class:'form-control' %>
+        </div>
+        <div class='form-group'>
+          <%= f.label :'出生日期 Date of Birth' %>
+          <%= f.text_field :birthday,class:'form-control',placeholder:'yyyy/mm/dd' %>
+        </div>
+        <div class='form-group'>
+          <%= f.label :'性別 Gender' %>
+          <%= f.text_field :gender,class:'form-control',placeholder:'男/Male or 女/Female' %>
+        </div>
+        <div class='form-group'>
+          <%= f.label :'居住地' %>
+          <%= f.text_field :address,class:'form-control',placeholder:'EX:新北市' %>
+        </div>
+        <div class='form-group'>
+          <%= f.label :'上傳你的大頭照' %>
+          <%= f.file_field :avatar %>
+        </div>
+        </br>
+        <%= f.submit(@user.new_record? ? '建立帳號': '更新資料',class:'btn btn-primary pull-right') %>
+       <% end %>
+      </div>
+  </div>
+</div>

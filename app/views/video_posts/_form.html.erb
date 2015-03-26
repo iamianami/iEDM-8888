@@ -1,0 +1,28 @@
+<div class='col-md-8 col-md-offset-2'>
+  <div class="panel">
+      <div class="panel-body">
+        <%= form_for @videopost do |f| %>
+          <div class='form-group'>
+            <%= f.label :'歌名' %>
+            <%= f.text_field :title ,class:'form-control',:placeholder => "輸入歌名"%>
+          </div>
+          <div class='form-group'>
+            <%= f.label :'Youtube or SoundCloud網址' %>
+            <%= f.text_field :url ,class:'form-control',:placeholder => "輸入Youtube or SoundClond網址"%>
+          </div>
+          <div class='form-group'>
+            <%= f.label :'歌曲介紹' %>
+            <%= f.cktext_area :description,class:'form-control' %>
+          </div>
+          <div class='form-group text-danger'>
+            <%= f.collection_check_boxes :category_ids,Category.all,:id,:name do |cb| %>
+              <% cb.label(class: "checkbox-inline") {cb.check_box(class: "checkbox") + cb.text } %>
+            <% end %>
+          </div>
+
+          <%= f.submit(@videopost.new_record? ? '送出' : '更新',class:'btn btn-primary pull-right') %>
+
+        <% end %>
+      </div>
+  </div>
+</div>

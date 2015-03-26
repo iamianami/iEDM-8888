@@ -1,0 +1,32 @@
+<div class='col-md-8 col-md-offset-2'>
+  <div class="panel">
+      <div class="panel-body">
+        <%= form_for @post do |f| %>
+          <div class='form-group'>
+            <%= f.label :'主題' %>
+            <%= f.text_field :title ,class:'form-control',:placeholder => "輸入文章標題"%>
+          </div>
+          <div class='form-group'>
+            <%= f.label :'文章來源' %>
+            <%= f.text_field :url ,class:'form-control',:placeholder => "輸入文章來源"%>
+          </div>
+          <!-- <div class='form-group'>
+            <%= f.label :'內容簡述 or 原文翻譯簡述' %>
+            <%= f.text_area :description,class:'form-control' ,rows:10%>
+          </div> -->
+          <div class='form-group'>
+            <%= f.cktext_area :description %>
+          </div>
+          
+          <div class='form-group'>
+            <%= f.collection_check_boxes :category_ids,Category.all,:id,:name do |cb| %>
+              <% cb.label(class: "checkbox-inline") {cb.check_box(class: "checkbox") + cb.text } %>
+            <% end %>
+          </div>
+
+          <%= f.submit(@post.new_record? ? '建立文章' : '更新文章',class:'btn btn-primary pull-right') %>
+
+        <% end %>
+      </div>
+  </div>
+</div>

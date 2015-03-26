@@ -1,0 +1,29 @@
+
+<table class="table">
+    <tbody>
+        <%= video.url_html %>
+        <div class="star-rating pull-left" data-score= <%= video.average_rating %>></div>
+        <tr>
+            <td>
+                <%=link_to video_post_path(video), class:'text-danger' do %>
+                 <%= truncate video.title,length:20 %>
+                <% end %>
+                
+                <%= link_to '..More', video_post_path(video),class:'btn btn-danger btn-xs' %>
+            </td>
+        </tr>
+    <tbody>   
+</table>
+
+
+
+<script>
+  $('.star-rating').raty({
+    path:'/assets/',
+    readOnly: true,
+    score: function() {
+          return $(this).attr('data-score');
+    }
+  });
+</script>
+
