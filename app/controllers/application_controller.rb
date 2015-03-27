@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
   def require_admin?
     if !current_user.admin?
-      flash[:error] = '禁止進入'
+      flash[:error] = '只有iEDM Writer才能發文喔'
       redirect_to root_path
     end
   end

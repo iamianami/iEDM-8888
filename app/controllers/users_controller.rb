@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show,:edit,:update]
 
   def show
-      @collect = Collect.where(user_id: @user.slug) 
+      @collect = Collect.where(user_id: @user.id) 
       @collect_posts = []
       
       @collect.each do |collect|
