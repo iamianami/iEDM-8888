@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   has_many :comments,:dependent => :destroy
   has_many :post_categories
   has_many :categories,through: :post_categories
+ 
 
   validates_uniqueness_of :creator,scope: :collect
 

@@ -4,11 +4,8 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :video_posts
   has_many :video_comments
-
-
  
 
- 
 
   has_secure_password 
 
