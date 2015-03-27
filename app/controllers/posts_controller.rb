@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_post,only: [:show,:edit,:update,:like,:destroy,:collect]
   before_action :require_user,only: [:new,:edit]
-  before_action :require_admin?,only: [:new,:destroy]
+  before_action :require_admin?,only: [:new,:create,:edit,:update,:destroy]
   
   def index
     @post = Post.all.sort_by{|x| x.like }.reverse
