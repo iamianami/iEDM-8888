@@ -6,7 +6,7 @@
         <tr>
             <td>
                 <%=link_to video_post_path(video), class:'text-danger' do %>
-                 <%= truncate video.title,length:20 %>
+                 <%= truncate video.title,length:40 %>
                 <% end %>
                 
                 <%= link_to '..More', video_post_path(video),class:'btn btn-danger btn-xs' %>
