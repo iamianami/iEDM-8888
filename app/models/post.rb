@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   has_many :categories,through: :post_categories
  
 
-  validates_uniqueness_of :creator,scope: :collect
+ 
 
   validates :description,presence: true
   validates_presence_of :title, :message => "標題不能為空白"
