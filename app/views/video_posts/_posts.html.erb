@@ -1,4 +1,3 @@
-
 <table class="table">
     <tbody>
         <%= video.url_html %>
@@ -17,6 +16,9 @@
 
 
 
+
+
+
 <script>
   $('.star-rating').raty({
     path:'/assets/',
@@ -27,3 +29,9 @@
   });
 </script>
 
+<script>
+  $('#star-rating').raty({
+    path:'/assets/',
+    scoreName: 'video_comment[rating]'
+  });
+</script>

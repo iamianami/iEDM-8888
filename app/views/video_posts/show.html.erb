@@ -24,8 +24,8 @@
               </tr>
               <tr>
                 <td>
-                    <div class="star-rating" data-score= <%= @videopost.average_rating %>></div>
-                </td>
+                   <div class="star-rating" data-score= <%= @videopost.average_rating %>></div>
+                 </td>
               </tr>
               <tr>
                 <td><%= @videopost.description.html_safe %></td>
@@ -71,12 +71,13 @@
   </div>
 </div>
 
-<script>
-  $('#star-rating').raty({
-    path:'/assets/',
-    scoreName: 'video_comment[rating]'
-  });
-</script>
+ <script>
+   $('#star-rating').raty({
+     path:'/assets/',
+     scoreName: 'video_comment[rating]'
+   });
+ </script>
+
 <script>
   $('.star-rating').raty({
     path:'/assets/',
@@ -86,6 +87,7 @@
     }
   });
 </script>
+
 
 
 
