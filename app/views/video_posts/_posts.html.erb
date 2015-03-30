@@ -19,19 +19,13 @@
 
 
 
-<script>
-  $('.star-rating').raty({
-    path:'/assets/',
-    readOnly: true,
-    score: function() {
-          return $(this).attr('data-score');
-    }
-  });
-</script>
+ <script>
+   jQuery('.star-rating').raty({
+     path:'/assets/',
+     readOnly: true,
+     score: function() {
+           return $(this).attr('data-score');
+     }
+   });
+ </script>
 
-<script>
-  $('#star-rating').raty({
-    path:'/assets/',
-    scoreName: 'video_comment[rating]'
-  });
-</script>
