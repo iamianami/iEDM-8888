@@ -8,7 +8,7 @@ module Sluggable
   end
 
   def generate_slug
-    self.slug = self.created_at
+    self.slug = self.title
   end
 
   def to_param
