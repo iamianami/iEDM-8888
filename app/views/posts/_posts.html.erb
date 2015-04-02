@@ -23,7 +23,7 @@
       <% end %>
     <% end %> 
     
-    <h4><%= link_to post.title,post_path(post),class:"text-danger" %></h4>
+    <h5><%= link_to post.title,post_path(post),class:"text-danger" %></h5>
    
       <p>
         <%= truncate (post.description.html_safe) ,length:100,:escape => false %>
