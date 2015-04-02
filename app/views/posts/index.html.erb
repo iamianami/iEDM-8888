@@ -1,6 +1,7 @@
 <div class="container">
   <div class='row'>
     <h1 class="text-danger">Hot EDM NEWS
+      <small>最新/熱門News</small>
       <%= link_to '發佈新文章 +',new_post_path,class:'btn btn-danger pull-right' %>
     </h1>
 
@@ -24,7 +25,7 @@
             <% @post.each do |post| %>
               <%= render 'posts',post:post %>
             <% end %>
-            
+
             <div class="apple_pagination">
               <%= will_paginate @post %>
             </div>
