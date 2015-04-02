@@ -1,32 +1,40 @@
-
-
-
 <div class="container">
-
   <div class='row'>
     <h1 class="text-danger">Hot EDM NEWS
       <%= link_to '發佈新文章 +',new_post_path,class:'btn btn-danger pull-right' %>
-      <hr>
     </h1>
-      
+
+    <ul class='nav nav-tabs'>
+      <li class="<%= 'active' if params[:tab].nil? %>">
+        <%= link_to '最新文章',posts_path %>
+      </li>
+      <li class="<%= 'active' if params[:tab] == 'hot' %>">
+        <%= link_to 'Top 10 熱門文章',posts_path(tab:'hot')%>
+      </li> 
+    </ul>
   </div>
 
+ 
   <div class="row">
-    
     <div class="col-md-10 col-md-offset-1"> 
-      
       <div class="panel">
         <div class="panel-body">
           <!--/stories-->
-          <% @post.each do |post| %>
-            <%= render 'posts',post:post %>
+          <% if params[:tab].nil? %>
+            <% @post.each do |post| %>
+              <%= render 'posts',post:post %>
+            <% end %>
+          <% else %>
+            <% @hotpost.each do |post| %>
+              <%= render 'posts',post:post %>
+            <% end %>
           <% end %>
-                       
+
         </div>
       </div>
-                                                                                                                                     
     </div><!--/col-12-->
   </div>
+
 </div>
 
 <div class="apple_pagination">

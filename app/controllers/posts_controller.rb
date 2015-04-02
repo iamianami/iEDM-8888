@@ -4,8 +4,10 @@ class PostsController < ApplicationController
   before_action :require_admin?,only: [:new,:create,:edit,:update,:destroy]
   
   def index
-    @post = Post.all.sort_by{|x| x.like }.reverse
-    @post = @post.paginate(:page => params[:page],:per_page => 5) 
+    @post = Post.all.reverse
+    @post = @post.paginate(:page => params[:page],:per_page => 10) #每十篇為一頁 
+
+    @hotpost = Post.all.limit(10).sort_by{|x| x.like }.reverse
   end
 
   def show
