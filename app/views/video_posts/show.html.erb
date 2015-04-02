@@ -2,7 +2,9 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-7">
+      <div class='col-md-1'>
+      </div>
+      <div class="col-md-7 well">
           <% @videopost.categories.each do |category| %>
             <%= link_to category_path(category) do %>
               <span class="badge"><%= category.name %></span>
@@ -42,7 +44,7 @@
       </div>
 
      
-      <div class="col-md-4 col-md-offset-1">
+      <div class="col-md-3">
         <% if logged_in? %>
           <%= form_for [@videopost,@comment] do |f| %>
             
@@ -57,7 +59,7 @@
           <% end %>
            
         </br>
-        <hr>
+      
 
         <% end %>
 
@@ -67,6 +69,8 @@
             <%= link_to 'Delete',[@videopost,comment],method:'delete',class:'btn btn-danger btn-xs' %>
           <% end %>
         <% end %>
+      </div>
+      <div class='col-md-1'>
       </div>
     
     </div>
