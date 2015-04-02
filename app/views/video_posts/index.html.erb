@@ -24,9 +24,6 @@
                 </div>
             </div>
         <% end %> 
-        <div class="apple_pagination">
-            <%= will_paginate @videopost %>
-        </div> 
     <% else %>
           <% @hotvideopost.each do |video| %>
             <div class="col-md-4">
@@ -35,9 +32,14 @@
                 </div>
             </div>
         <% end %> 
-    <% end %>
-        
+    <% end %>      
 </div>
+
+<% if params[:tab].nil? %>
+    <div class="apple_pagination">
+        <%= will_paginate @videopost %>
+    </div> 
+<% end %>
 
 
 

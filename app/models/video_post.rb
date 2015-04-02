@@ -12,7 +12,7 @@ class VideoPost < ActiveRecord::Base
   auto_html_for :url do
     html_escape
     image
-    soundcloud(:width => 350, :height => 200, :autoplay => false)
+    soundcloud(:width => 350, :height => 208, :autoplay => false)
     youtube(:width => 350, :height => 200, :autoplay => false)
     link :target => "_blank", :rel => "nofollow"
     simple_format
