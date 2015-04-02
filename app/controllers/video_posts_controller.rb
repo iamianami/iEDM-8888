@@ -5,8 +5,10 @@ class VideoPostsController < ApplicationController
   before_action :find_video_post ,only: [:edit,:show,:update]
 
   def index
-    @videopost = VideoPost.all.sort_by{|video| video.average_rating }.reverse
-    @videopost = @videopost.paginate(:page => params[:page],:per_page => 6) 
+    @videopost = VideoPost.all.reverse
+    @hotvideopost = VideoPost.all.limit(10).sort_by{|video| video.average_rating }.reverse
+
+    @videopost = @videopost.paginate(:page => params[:page],:per_page => 9) 
   end
 
   def new
