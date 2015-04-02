@@ -3,6 +3,7 @@ class VideoPostsController < ApplicationController
 
   before_action :require_user,only: [:new,:create,:edit,:update]
   before_action :find_video_post ,only: [:edit,:show,:update]
+  before_action :require_creator ,only: [:edit,:update]
 
   def index
     @videopost = VideoPost.all.reverse
@@ -55,6 +56,13 @@ class VideoPostsController < ApplicationController
 
   def find_video_post
     @videopost = VideoPost.find(params[:id])
+  end
+
+  def require_creator
+    if current_user != @videopost.creator
+      flash[:error] = '只有文章發布本人才可以修改文章喔！'
+      redirect_to video_post_path(@videopost)
+    end
   end
 
   

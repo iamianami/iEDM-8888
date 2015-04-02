@@ -15,7 +15,7 @@
             <%= social_share_button_tag(@videopost.title) %>
             <p class='pull-right'>
                     Created by <%= link_to @videopost.creator.username,user_path(@videopost.creator) %>
-                      <% if @videopost.creator == current_user.username %>
+                      <% if current_user == @videopost.creator %>
                         <%= link_to '編輯修改',edit_video_post_path(@videopost) %>
                       <% end %>
                     <%= @videopost.created_at %>
