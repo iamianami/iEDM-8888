@@ -33,8 +33,7 @@ CKEDITOR.editorConfig = function( config )
 
   config.allowedContent = true;
 
-  //Youtube plugin
-  config.extraPlugins = 'youtube';
+  
 
   // Rails CSRF token
   config.filebrowserParams = function(){
