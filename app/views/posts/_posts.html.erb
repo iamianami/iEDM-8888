@@ -1,6 +1,6 @@
-<% if logged_in? && current_user.admin? %>
-  <%= link_to "Delete this post", post , method:'delete' ,class:'btn-danger btn-xs'%>
-<% end %>
+<% #if logged_in? && current_user.admin? %>
+  <% #link_to "Delete this post", post , method:'delete' ,class:'btn-danger btn-xs'%>
+<% #end %>
 <div class="row">  
   <!-- <div class="col-md-2 col-sm-3 text-center">
     <% if post.creator.avatar.url %>
@@ -23,10 +23,10 @@
       <% end %>
     <% end %> 
     
-    <h5><%= link_to post.title,post_path(post),class:"text-danger" %></h5>
+    <h4><%= link_to post.title,post_path(post),class:"text-danger" %></h4>
    
       <p>
-        <%= truncate (post.description.html_safe) ,length:100,:escape => false %>
+        <%= truncate (post.description.html_safe) ,length:150,:escape => false %>
         <%= link_to '更多',post_path(post) %>
       </p>
   </div>

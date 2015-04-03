@@ -56,7 +56,7 @@
         <% @post.reload.comments.each do |comment| %>
           <%= render 'comments/comment',comment: comment %>
           <% if logged_in? && current_user.admin? %>
-            <%= link_to 'Delete',[@post,comment],method:'delete',class:'btn btn-danger btn-xs' %>
+            <% #link_to 'Delete',[@post,comment],method:'delete',class:'btn btn-danger btn-xs' %>
           <% end %>
         <% end %>
       </div>
