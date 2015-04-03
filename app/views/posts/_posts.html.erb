@@ -26,8 +26,8 @@
     <h4><%= link_to post.title,post_path(post),class:"text-danger" %></h4>
    
       <p>
-        <%= truncate (post.description.html_safe) ,length:150,:escape => false %>
-        <%= link_to '更多',post_path(post) %>
+        <%= truncate (post.description.html_safe) ,length:100,:escape => false %>
+        <%#= link_to '更多',post_path(post) %>
       </p>
   </div>
     <div class="row">
