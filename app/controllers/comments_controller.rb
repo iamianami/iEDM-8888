@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :find_post,only: [:create,:destroy,:like]
+  before_action :require_user,only: [:create]
   before_action :require_admin? ,only: [:destroy]
 
   def create

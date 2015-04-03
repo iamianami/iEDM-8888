@@ -1,5 +1,6 @@
 class VideoCommentsController < ApplicationController
   before_action :find_video_post,only: [:create]
+  before_action :require_user,only: [:create]
 
 
   def create
