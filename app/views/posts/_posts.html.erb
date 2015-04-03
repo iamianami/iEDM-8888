@@ -27,7 +27,7 @@
    
       <p>
         <%= truncate (post.description.html_safe) ,length:100,:escape => false %>
-        <%#= link_to '更多',post_path(post) %>
+        <%= link_to '..顯示更多',post_path(post) %>
       </p>
   </div>
     <div class="row">
