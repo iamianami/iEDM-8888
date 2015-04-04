@@ -4486,8 +4486,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color:white;
-  border-color: white;
+  background-color:black;
+  border-color:black;
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .navbar-inverse .navbar-brand {
@@ -4496,7 +4496,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fff;
+  color: #B4B300;
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
