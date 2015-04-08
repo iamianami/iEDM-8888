@@ -1,66 +1,105 @@
 <%= render 'errors/errors',obj:@comment %>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="row">
-      <div class='col-md-1'>
-      </div>
-      <div class="col-md-8  well ">
-          <% @post.categories.each do |category| %>
-            <%= link_to category_path(category) do %>
-              <span class="badge"><%= category.name %></span>
-            <% end %>
-          <% end %>
-      
-        <div class="table-responsive">
-          <table class="table">
-            <h4 class="text-danger"><%= @post.title %></h4>
-          
-               <%= social_share_button_tag(@post.title) %>
-               <%= link_to "收藏" ,collect_post_path(@post),method: "post",class:"btn btn-danger btn-xs" %>
+<br>
 
+<div class="col-md-1">
+</div>
 
+<div class="col-md-7 ">
+  <div class="panel panel-danger">
+    <div class="panel panel-heading"><%= @post.title %></div>
+    <% @post.categories.each do |category| %>
+      <%= link_to category_path(category) do %>
+        <span class="badge"><%= category.name %></span>
+      <% end %>
+    <% end %>
+
+    <div class="table-responsive">
+      <table class="table">
+        <tbody>
+        
+          <td>
+             <%= social_share_button_tag(@post.title) %>
+             <%= link_to "收藏" ,collect_post_path(@post),method: "post",class:"btn btn-danger btn-xs" %>
             <p class='pull-right'>
               Created by <%=link_to @post.creator.username,user_path(@post.creator) %>
               <%= link_to '編輯修改',edit_post_path(@post) %>
               <%= @post.created_at %>
             </p>
-            <tbody>
-              <tr>
-                <td><%= @post.description.html_safe %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            
 
+            <%= @post.description.html_safe %>
+
+            <hr>
+            <span><%= link_to '< 上一篇' ,(@post.previous if @post.previous), class:"btn btn-primary" %></span>
+            <span class='pull-right'><%= link_to '下一篇 >',(@post.next if @post.next) , class:"btn btn-primary" %></span>
+            <div class='text-center'><%= link_to 'Sources', fix_url(@post.url) %></div>
+          </td>
         
 
-        <span><%= link_to '< 上一篇' ,@post.previous if @post.previous %></span>
-        <span class='pull-right'><%= link_to '下一篇 >',@post.next if @post.next %></span>
-        <div class='text-center'><%= link_to 'Sources', fix_url(@post.url) %></div>
-      
-      </div>
+        </tbody>
+      </table>
+    </div><!--table responsive -->
+  
+  </div><!-- panel panel-danger -->
 
-      <div class="col-md-3">
-     
-          <%= form_for [@post,@comment] do |f| %>
-            <div class='form-group'>
-            <%= f.label :'Say something 說些什麼！？' %>
-            <%= f.text_area :body ,class:'form-control' %>
-            </div>
+      <%= form_for [@post,@comment] do |f| %>
+        <div class='form-group'>
+        <%= f.label :'Say something' %>
+        <%= f.text_area :body ,class:'form-control' %>
+        </div>
 
-            <%= f.submit '留言' ,class:'btn btn-primary btn-xs pull-right'%>
-       
+        <%= f.submit '留言' ,class:'btn btn-primary btn-xs pull-right'%>
         </br>
-     
+      <% end %>
+    
+      
+      <% @post.reload.comments.each do |comment| %>
+        <%= render 'comments/comment',comment: comment %>
+        <% if logged_in? && current_user.admin? %>
+          <% #link_to 'Delete',[@post,comment],method:'delete',class:'btn btn-danger btn-xs' %>
         <% end %>
-        <% @post.reload.comments.each do |comment| %>
-          <%= render 'comments/comment',comment: comment %>
-          <% if logged_in? && current_user.admin? %>
-            <% #link_to 'Delete',[@post,comment],method:'delete',class:'btn btn-danger btn-xs' %>
+        <hr> 
+      <% end %>
+   
+
+</div><!-- col-md-7  -->
+
+
+<div class="col-md-3">
+  <div class="panel panel-danger">
+    <div class="panel panel-heading">關於我們</div>
+      <table class="table">
+        <td>
+      我們只是想分享一些EDM新聞、音樂
+      ，給那些跟我們一樣，當音樂來了，tempo對了，可以馬上從椅子上跳起來搖頭晃腦的人
+      ，但別像個小孩子一樣，在那邊分流分派，聽聽音樂而已，別這麼累。
+        </td>
+      </table>
+  </div>
+
+ <!--  <div class="panel panel-danger">
+    <div class="panel panel-heading">合作夥伴</div>
+    </div>
+  </div> -->
+
+  <div class="panel panel-danger">
+    <div class="panel panel-heading">熱門文章</div>
+      <ol>
+        <% @hotpost.each do |post| %>
+          <%= link_to post do %>
+            <li><%= post.title %></li>
           <% end %>
         <% end %>
-      </div>
-      
+      </ol>
     </div>
   </div>
+
 </div>
+
+
+
+
+
+
+
+

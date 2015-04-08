@@ -1,79 +1,107 @@
 <%= render 'errors/errors',obj:@comment %>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="row">
-      <div class='col-md-1'>
-      </div>
-      <div class="col-md-7 well">
-          <% @videopost.categories.each do |category| %>
-            <%= link_to category_path(category) do %>
-              <span class="badge"><%= category.name %></span>
-            <% end %>
-          <% end %>
-      
-        <div class="table-responsive">
-          <table class="table">
-            <h4 class='text-danger'><%= @videopost.title %></h4>
+<br>
+<div class='col-md-1'>
+</div>
+
+<div class="col-md-7">
+  <div class="panel panel-danger">
+    <div class='panel panel-heading text-center'><%= @videopost.title %></div>
+    <% @videopost.categories.each do |category| %>
+      <%= link_to category_path(category) do %>
+        <span class="badge"><%= category.name %></span>
+      <% end %>
+    <% end %>
+
+    <div class="table-responsive">
+      <table class="table">
+        <tbody>
+          <td>
+
             <%= social_share_button_tag(@videopost.title) %>
             <p class='pull-right'>
-                    Created by <%= link_to @videopost.creator.username,user_path(@videopost.creator) %>
-                      <% if current_user == @videopost.creator %>
-                        <%= link_to '編輯修改',edit_video_post_path(@videopost) %>
-                      <% end %>
-                    <%= @videopost.created_at %>
+             
             </p>
-            <tbody>
-              <tr>
-                <td class='text-center'><%= @videopost.url_html %></td>
-              </tr>
-              <tr>
-                <td>
-                   <div class="star-rating" data-score= <%= @videopost.average_rating %>></div>
-                 </td>
-              </tr>
-              <tr>
-                <td><%= @videopost.description.html_safe %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <span><%= link_to '< 上一篇' ,@videopost.previous if @videopost.previous %></span>
-        <span class='pull-right'><%= link_to '下一篇 >',@videopost.next if @videopost.next %></span>
-      
-      </div>
-
+       
      
-      <div class="col-md-3">
-   
-          <%= form_for [@videopost,@comment] do |f| %>
-            
-            <div class='form-group'>
-              <%= f.label :'Say something 說些什麼！？' %>
-              <%= f.text_area :body ,class:'form-control' %>
+            <div class="text-center">
+              <%= @videopost.url_html %>
+               <%= @videopost.description.html_safe %>
+              <div class="star-rating" data-score= <%= @videopost.average_rating %>></div>
+
+              </br>
+               Created by <%= link_to @videopost.creator.username,user_path(@videopost.creator) %>
+                <% if current_user == @videopost.creator %>
+                  <%= link_to '編輯修改',edit_video_post_path(@videopost) %>
+                <% end %>
+              <%= @videopost.created_at %>
             </div>
+
           
-            <div id='star-rating'></div>
-            <%= f.submit '送出' ,class:'btn btn-primary btn-xs pull-right'%>
-           
-        </br>
+            <span>
+              <%= link_to '< 上一篇' ,(@videopost.previous if @videopost.previous),class:'btn btn-primary' %>
+            </span>
+            <span class='pull-right'>
+              <%= link_to '下一篇 >',(@videopost.next if @videopost.next),class:"btn btn-primary" %>
+            </span>
+
+          </td> 
+        </tbody>
+      </table>
+    </div><!-- table-responsive --> 
+  </div><!-- panel  -->
+  <%= form_for [@videopost,@comment] do |f| %>
       
+    <div class='form-group'>
+      <%= f.label :'Say something 說些什麼！？' %>
+      <%= f.text_area :body ,class:'form-control' %>
+    </div>
+  
+    <div id='star-rating'></div>
+      <%= f.submit '送出' ,class:'btn btn-primary btn-xs pull-right'%>
+      </br>   
+  <% end %>
 
-        <% end %>
+  <% @videopost.reload.video_comments.each do |comment| %>
+    <%= render 'video_comments/video_comment',comment: comment %>
+    <% if logged_in? && current_user.admin? %>
+      <%#= link_to 'Delete',[@videopost,comment],method:'delete',class:'btn btn-danger btn-xs' %>
+    <% end %>
+    <hr>
+  <% end %>
 
-        <% @videopost.reload.video_comments.each do |comment| %>
-          <%= render 'video_comments/video_comment',comment: comment %>
-          <% if logged_in? && current_user.admin? %>
-            <%= link_to 'Delete',[@videopost,comment],method:'delete',class:'btn btn-danger btn-xs' %>
+</div><!-- col-md-7 -->
+
+<div class="col-md-3">
+  <div class="panel panel-danger">
+    <div class="panel panel-heading">關於我們</div>
+      <table class="table">
+        <td>
+      我們只是想分享一些EDM新聞、音樂
+      ，給那些跟我們一樣，當音樂來了，tempo對了，可以馬上從椅子上跳起來搖頭晃腦的人
+      ，但別像個小孩子一樣，在那邊分流分派，聽聽音樂而已，別這麼累。
+        </td>
+      </table>
+  </div>
+
+ <!--  <div class="panel panel-danger">
+    <div class="panel panel-heading">合作夥伴</div>
+    </div>
+  </div> -->
+
+  <div class="panel panel-danger">
+    <div class="panel panel-heading">熱門文章</div>
+      <ol>
+        <% @hotvideopost.each do |post| %>
+          <%= link_to post do %>
+            <li><%= post.title %></li>
           <% end %>
         <% end %>
-      </div>
-      <div class='col-md-1'>
-      </div>
-    
+      </ol>
     </div>
   </div>
+
 </div>
+
 
  <script>
    $('#star-rating').raty({

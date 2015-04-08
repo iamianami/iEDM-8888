@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @hotpost = Post.all.limit(10).sort_by{|x| x.like }.reverse
   end
 
   def new
