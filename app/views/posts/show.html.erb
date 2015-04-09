@@ -65,44 +65,9 @@
 </div><!-- col-md-7  -->
 
 
-<div class="col-md-3">
-  <div class="panel panel-danger">
-    <div class="panel panel-heading">關於我們</div>
-      <table class="table">
-        <td>
-      如果你跟我們一樣，當tempo來了，不管當下在哪裡
-      你都會想隨著音樂跳起來擺動，那你就是我們想要分享的對象
-      ，分享EDM新聞、DJ News以及Party資訊，不分無聊的流派，
-      只有High & 不High。
-        </td>
-      </table>
-  </div>
 
-  <div class="panel panel-danger">
-    <div class="panel panel-heading">合作夥伴</div>
-      <table class="table">
-        <td>
-          <div class="text-center">
-            <%= link_to "https://www.facebook.com/PartycrazyEM" do %>
-              <%= image_tag "../party_crazy_logo.png",width: 120,height: 90,alt: "Our partner Party Crazy " %>
-            <% end %>
-          </div>
-        </td>
-      </table>
-  </div>
 
-  <div class="panel panel-danger">
-    <div class="panel panel-heading">熱門文章</div>
-      <ol>
-        <% @hotpost.each do |post| %>
-          <%= link_to post do %>
-            <li><%= post.title %></li>
-          <% end %>
-        <% end %>
-      </ol>
-  </div>
 
-</div>
 
 
 

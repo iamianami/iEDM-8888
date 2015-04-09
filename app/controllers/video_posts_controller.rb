@@ -43,8 +43,9 @@ class VideoPostsController < ApplicationController
   end
 
   def show
-    @hotvideopost = VideoPost.all.limit(10).sort_by{|video| video.average_rating }.reverse
+    @hotpost = VideoPost.all.limit(10).sort_by{|video| video.average_rating }.reverse
     @comment = VideoComment.new
+    render layout: 'with_sidebar'
   end
 
 
