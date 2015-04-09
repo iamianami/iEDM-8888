@@ -16,7 +16,7 @@
     <% end %>   
   </div> -->
       
-  <div class="col-md-8">
+  <div class="col-md-8 col-md-offset-2">
     <% post.categories.each do |category| %>
       <%= link_to category_path(category) do %>
         <span class="badge"><%= category.name %></span>

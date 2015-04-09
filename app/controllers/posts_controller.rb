@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   
   def index
     @post = Post.all.reverse
-    @post = @post.paginate(:page => params[:page],:per_page => 10) #每十篇為一頁 
+    @post = @post.paginate(:page => params[:page],:per_page => 10) #每10篇為一頁 
 
     @hotpost = Post.all.limit(10).sort_by{|x| x.like }.reverse
   end
